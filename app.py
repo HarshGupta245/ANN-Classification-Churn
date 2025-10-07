@@ -36,19 +36,17 @@ num_of_products = st.slider('Number of Products', 1, 4)
 has_cr_card = st.selectbox('Has Credit Card', [0, 1])
 is_active_member = st.selectbox('Is Active Member', [0, 1])
 
-## Prepare the input data
 input_data = pd.DataFrame({
-    'CreditScore': [credit_score],
+    'CreditScore': [float(credit_score)],
     'Gender': [label_encoder_gender.transform([gender])[0]],
-    'Age':[age],
-    'Tenure':[tenure],
-    'Balance':[balance],
-    'NumOfProducts': [num_of_products],
-    'HasCrCard': [has_cr_card],
-    'IsActiveMember': [is_active_member],
-    'EstimatedSalary':[estimated_salary]
+    'Age': [float(age)],
+    'Tenure': [float(tenure)],
+    'Balance': [float(balance)],
+    'NumOfProducts': [float(num_of_products)],
+    'HasCrCard': [float(has_cr_card)],
+    'IsActiveMember': [float(is_active_member)],
+    'EstimatedSalary': [float(estimated_salary)]
 })
-
 # One Hot Encode "Geography"
 geo_encoded = onehot_encoder_geo.transform([[geography]]).toarray()
 geo_encoded_df = pd.DataFrame(geo_encoded,columns=onehot_encoder_geo.get_feature_names_out(['Geography']))
@@ -68,4 +66,5 @@ st.write(f'Churn Probability : {prediction_proba:.2f}')
 if prediction_proba > 0.5:
     print("THe Customer is likely to churn.")
 else:
+
     print("The Customer is not likely to churn.")
