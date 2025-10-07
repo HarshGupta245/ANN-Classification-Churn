@@ -64,7 +64,7 @@ prediction_proba = prediction[0][0]
 st.write(f'Churn Probability : {prediction_proba:.2f}')
 
 if prediction_proba > 0.5:
-    print("THe Customer is likely to churn.")
+    st.write("THe Customer is likely to churn.")
 else:
+    st.write("The Customer is not likely to churn.")
 
-    print("The Customer is not likely to churn.")
